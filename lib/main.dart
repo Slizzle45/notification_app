@@ -9,7 +9,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   static const appTitle = 'Notification App';
-  static const primaryColor = Color(0xFF424549);
 
   @override
   Widget build(BuildContext context) {
@@ -31,35 +30,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Option1',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: Option2',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Option3',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 4: Option4',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 5: Option5',
-      style: optionStyle,
-    ),
-  ];
-
+  static const primaryColor = Color.fromARGB(255, 64, 114, 38);
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -71,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        backgroundColor: primaryColor,
         leading: Builder(
           builder: (context) {
             return IconButton(
@@ -82,9 +54,6 @@ class _MyHomePageState extends State<MyHomePage> {
           },
         ),
       ),
-      body: Center(
-        child: _widgetOptions[_selectedIndex],
-      ),
       drawer: Drawer(
         //listview
         child: ListView(
@@ -93,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: primaryColor,
               ),
               child: Text('Drawer Header'),
             ),
