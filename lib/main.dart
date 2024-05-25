@@ -40,8 +40,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text(widget.title),
+        centerTitle: true,
         backgroundColor: primaryColor,
         leading: Builder(
           builder: (context) {
