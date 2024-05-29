@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'screens/home_screen.dart';
+import 'screens/second_screen.dart';
+import 'screens/third_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,8 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     HomePageView(), // Home page
-    Center(child: Text('Option 1 Page')), // Option1 page
-    Center(child: Text('Option 2 Page')), // Option2 page
+    SecondScreen(), // Option1 page
+    ThirdScreen(), // Option2 page
   ];
 
   @override
