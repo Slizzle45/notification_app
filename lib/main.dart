@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'screens/home_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -10,9 +12,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: appTitle,
-      home: MyHomePage(title: appTitle),
+      theme: ThemeData(fontFamily: "Nunito"),
+      home: const MyHomePage(title: appTitle),
     );
   }
 }
@@ -35,12 +38,21 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  static const List<Widget> _widgetOptions = <Widget>[
+    HomePageView(), // Home page
+    Center(child: Text('Option 1 Page')), // Option1 page
+    Center(child: Text('Option 2 Page')), // Option2 page
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      //extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          style: const TextStyle(fontWeight: FontWeight.w700),
+        ),
         centerTitle: true,
         backgroundColor: primaryColor,
         leading: Builder(
@@ -54,69 +66,58 @@ class _MyHomePageState extends State<MyHomePage> {
           },
         ),
       ),
-      drawer: Drawer(
-        //listview
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: primaryColor,
-              ),
-              child: Text('Drawer Header'),
+      drawer: mainDrawer(context),
+      body: _widgetOptions
+          .elementAt(_selectedIndex), //returns the page you select from drawer
+    );
+  }
+
+  /// Left-Side drawer opens with burger icon.
+  Drawer mainDrawer(BuildContext context) {
+    return Drawer(
+      //listview
+      child: ListView(
+        // Important: Remove any padding from the ListView.
+        padding: EdgeInsets.zero,
+        children: [
+          const DrawerHeader(
+            decoration: BoxDecoration(
+              color: primaryColor,
             ),
-            ListTile(
-              title: const Text('Home'),
-              selected: _selectedIndex == 0,
-              onTap: () {
-                // Update the state of the app
-                _onItemTapped(0);
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Option1'),
-              selected: _selectedIndex == 1,
-              onTap: () {
-                // Update the state of the app
-                _onItemTapped(1);
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Option2'),
-              selected: _selectedIndex == 2,
-              onTap: () {
-                // Update the state of the app
-                _onItemTapped(2);
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
+            child: Text('Drawer Header'),
+          ),
+          ListTile(
+            title: const Text('Home'),
+            selected: _selectedIndex == 0,
+            onTap: () {
+              // Update the state of the app
+              _onItemTapped(0);
+              // Then close the drawer
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            title: const Text('Option1'),
+            selected: _selectedIndex == 1,
+            onTap: () {
+              // Update the state of the app
+              _onItemTapped(1);
+              // Then close the drawer
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            title: const Text('Option2'),
+            selected: _selectedIndex == 2,
+            onTap: () {
+              // Update the state of the app
+              _onItemTapped(2);
+              // Then close the drawer
+              Navigator.pop(context);
+            },
+          ),
+        ],
       ),
     );
   }
 }
-      
-      /*
-theme: ThemeData(
-        primaryColor: Color(0x424549),
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Notification App'),
-          backgroundColor: primaryColor,
-          centerTitle: true,
-        ),
-        drawer: Drawer(
-          child: Text('asd'), //todo,
-        ),
-        body: Text('merhaba dünya'),
-      ),
-      */
-      
